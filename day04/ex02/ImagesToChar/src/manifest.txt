@@ -1,0 +1,3 @@
+main-class: edu.school21.printer.app.Program
+class-path: target/
+Bundle-ClassPath: ., lib/JCDP-4.0.2.jar, lib/jcommander-1.78.jar

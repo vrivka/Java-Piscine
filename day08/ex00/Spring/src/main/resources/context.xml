@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="preProcessorToLower" class="edu.school21.implementations.PreProcessorToLowerImpl"/>
+    <bean id="preProcessorToUpper" class="edu.school21.implementations.PreProcessorToUpperImpl"/>
+
+    <bean id="rendererStandardLowerCase" class="edu.school21.implementations.RendererStandardImpl">
+        <constructor-arg ref="preProcessorToLower"/>
+    </bean>
+    <bean id="rendererStandardUpperCase" class="edu.school21.implementations.RendererStandardImpl">
+        <constructor-arg ref="preProcessorToUpper"/>
+    </bean>
+    <bean id="rendererErrLowerCase" class="edu.school21.implementations.RendererErrImpl">
+        <constructor-arg ref="preProcessorToLower"/>
+    </bean>
+    <bean id="rendererErrUpperCase" class="edu.school21.implementations.RendererErrImpl">
+        <constructor-arg ref="preProcessorToUpper"/>
+    </bean>
+
+    <bean id="printerWithPrefix" class="edu.school21.implementations.PrinterWithPrefixImpl">
+        <constructor-arg ref="rendererErrUpperCase"/>
+        <property name="prefix" value="Prefix "/>
+    </bean>
+    <bean id="printerWithDateTime" class="edu.school21.implementations.PrinterWithDateTimeImpl">
+        <constructor-arg ref="rendererErrLowerCase"/>
+    </bean>
+
+</beans>
